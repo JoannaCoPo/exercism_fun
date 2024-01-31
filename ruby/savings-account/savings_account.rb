@@ -11,13 +11,12 @@ module SavingsAccount
   end
 
   def self.years_before_desired_balance(current_balance, desired_balance)
+    years = 0
+
+    while current_balance < desired_balance
+      current_balance = annual_balance_update(current_balance)
+      years += 1
+    end
+    years
   end
 end
-
-# 2. Calculate the annual balance update
-# Implement the SavingsAccount.annual_balance_update method to calculate the annual balance update, 
-# taking into account the interest rate:
-
-# SavingsAccount.annual_balance_update(200.75)
-# #=> 201.75375
-# Note that the value returned is an instance of Float.
