@@ -1,7 +1,5 @@
 module Port
-  # TODO: define the 'IDENTIFIER' constant
-  # system for keeping track of the ships that are currently in the harbor
-  Port::IDENTIFIER = :PALE
+  IDENTIFIER = :PALE
 
   def self.get_identifier(city)
     idnt = city[0..3].upcase
@@ -9,6 +7,7 @@ module Port
   end
 
   def self.get_terminal(ship_identifier)
-    raise 'Please implement the Port.get_terminal method'
+    string = ship_identifier.to_s
+    string.start_with?('G','O') ? :A : :B
   end
 end
