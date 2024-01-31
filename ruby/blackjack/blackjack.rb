@@ -18,7 +18,18 @@ module Blackjack
   end
 
   def self.card_range(card1, card2)
-    raise "Please implement the Blackjack.card_range method"
+    sum = parse_card(card1) + parse_card(card2)
+    result = range_value.find { |key, value| value.include?(sum) }
+    return result[0].to_s if result
+  end
+
+  def self.range_value
+    {
+      low:	4..11,
+      mid:	12..16,
+      high:	17..20,
+      blackjack:	21..21
+    }
   end
 
   def self.first_turn(card1, card2, dealer_card)
@@ -26,16 +37,17 @@ module Blackjack
   end
 end
 
-# 1. Calculate the value of any given card.
-# You will receive two cards and will be able to see the face up card of the dealer. 
-# All cards are represented using a string such as "ace", "king", "three", "two", etc. 
-# The values of each card are:
+# The player score has to be categorized into ranges of values. 
+# Player scores are computed by adding up the values of the two player cards. 
+# The ranges that are used are:
 
-# Commonly, aces can take the value of 1 or 11 but for simplicity we will assume that they can only 
-# take the value of 11.
+# range	value
+# low	[4, 11]
+# mid	[12, 16]
+# high	[17, 20]
+# blackjack	[21]
+# Implement the method Blackjack.card_range which takes two cards as strings as arguments. 
+# The method should return the name of the range of values the two cards fall into.
 
-# Implement the method Blackjack.parse_card which takes a card as a string as an argument. 
-# The method should return the value of the card as an integer.
-
-# Blackjack.parse_card("ace")
-# => 11
+# Blackjack.card_range("ten", "king")
+# => "high"
