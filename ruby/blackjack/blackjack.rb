@@ -33,21 +33,21 @@ module Blackjack
   end
 
   def self.first_turn(card1, card2, dealer_card)
-    raise "Please implement the Blackjack.first_turn method"
+    sum = parse_card(card1) + parse_card(card2)
+    parsed_dealer = parse_card(dealer_card)
+    # binding.pry
+
+    case 
+    when card1 && card2 == "ace"
+      "P"
+    when sum == 21
+      dealer_card < 10 ? "W" : "S"
+    when 17..20.include?(sum)
+      "S"
+    when 12..16.include?(sum)
+      dealer_card >= 7 ? "Hit" : "S"
+    when sum <= 11
+      "H"
+    end
   end
 end
-
-# The player score has to be categorized into ranges of values. 
-# Player scores are computed by adding up the values of the two player cards. 
-# The ranges that are used are:
-
-# range	value
-# low	[4, 11]
-# mid	[12, 16]
-# high	[17, 20]
-# blackjack	[21]
-# Implement the method Blackjack.card_range which takes two cards as strings as arguments. 
-# The method should return the name of the range of values the two cards fall into.
-
-# Blackjack.card_range("ten", "king")
-# => "high"
