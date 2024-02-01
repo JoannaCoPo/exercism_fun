@@ -4,16 +4,9 @@ export function needsLicense(kind) {
   return kind === 'car' || kind ==='truck';
 }
 
-/**
- * Helps choosing between two options by recommending the one that
- * comes first in dictionary order.
- *
- * @param {string} option1
- * @param {string} option2
- * @returns {string} a sentence of advice which option to choose
- */
 export function chooseVehicle(option1, option2) {
-  throw new Error('Please implement the chooseVehicle function');
+  const chosenOne = [option1, option2].sort();
+  return `${chosenOne[0]} is clearly the better choice.`;
 }
 
 /**
