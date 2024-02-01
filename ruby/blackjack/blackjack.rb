@@ -1,20 +1,21 @@
 module Blackjack
+  VALUES = [
+    "joker",
+    "placeholder",
+    "two", 
+    "three", 
+    "four", 
+    "five", 
+    "six", 
+    "seven", 
+    "eight", 
+    "nine", 
+    "ten", 
+    "ace"
+  ]
+
   def self.parse_card(card)
-    case card
-    when "ace" then 11
-    when "two" then 2
-    when "three" then 3
-    when "four" then 4
-    when "five" then 5
-    when "six" then 6
-    when "seven" then 7
-    when "eight" then 8
-    when "nine" then 9
-    when "ten", "jack", "queen", "king"
-      10
-    else
-      0
-    end
+    VALUES.index(card) || 10
   end
 
   def self.card_range(card1, card2)
@@ -34,18 +35,16 @@ module Blackjack
 
   def self.first_turn(card1, card2, dealer_card)
     sum = parse_card(card1) + parse_card(card2)
-    parsed_dealer = parse_card(dealer_card)
-    # binding.pry
 
     case 
     when card1 && card2 == "ace"
       "P"
     when sum == 21
-      dealer_card < 10 ? "W" : "S"
-    when 17..20.include?(sum)
+      parse_card(dealer_card) < 10 ? "W" : "S"
+    when (17..20).include?(sum)
       "S"
-    when 12..16.include?(sum)
-      dealer_card >= 7 ? "Hit" : "S"
+    when (12..16).include?(sum)
+      parse_card(dealer_card) >= 7 ? "H" : "S"
     when sum <= 11
       "H"
     end
