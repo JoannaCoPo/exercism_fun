@@ -4,6 +4,7 @@ class Isogram
 
     word.each_char do |c|
       next unless c.match?(/[a-zA-Z]/)
+      c.downcase!
       return false if repeats[c]  
       repeats[c] = true 
     end
