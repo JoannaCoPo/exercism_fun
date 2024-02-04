@@ -1,7 +1,26 @@
-=begin
-Write your code for the 'Luhn' exercise in this file. Make the tests in
-`luhn_test.rb` pass.
+class Luhn
+  def self.valid?(str)
+    str = str.split.join
+    return false if str.length <= 1 || str.match?(/\D/)
+    reversed = str.chars.map(&:to_i).reverse
 
-To get started with TDD, see the `README.md` file in your
-`ruby/luhn` directory.
-=end
+    reversed.each_with_index do |el, index|
+      next if index.even?
+      
+      doubled = el * 2
+      reversed[index] = doubled > 9 ? doubled - 9 : doubled 
+
+    end
+    (reversed.sum % 10) == 0
+  end
+end
+
+# length > 1
+# strip spaces before checking
+# spaces are only non-digit char allowed 
+
+# double every second dig
+# if doubled > 9, then - 9
+# then sum all dig
+
+# if divisiby by 10 - valid!
