@@ -1,7 +1,12 @@
-=begin
-Write your code for the 'Isogram' exercise in this file. Make the tests in
-`isogram_test.rb` pass.
+class Isogram
+  def self.isogram?(word)
+    repeats = {}
 
-To get started with TDD, see the `README.md` file in your
-`ruby/isogram` directory.
-=end
+    word.each_char do |c|
+      next unless c.match?(/[a-zA-Z]/)
+      return false if repeats[c]  
+      repeats[c] = true 
+    end
+    true
+  end
+end
