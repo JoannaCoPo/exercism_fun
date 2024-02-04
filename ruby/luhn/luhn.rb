@@ -14,13 +14,3 @@ class Luhn
     (reversed.sum % 10) == 0
   end
 end
-
-# length > 1
-# strip spaces before checking
-# spaces are only non-digit char allowed 
-
-# double every second dig
-# if doubled > 9, then - 9
-# then sum all dig
-
-# if divisiby by 10 - valid!
