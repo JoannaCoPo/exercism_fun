@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'pry'
 
 require 'minitest/autorun'
 require_relative 'bird_count'
