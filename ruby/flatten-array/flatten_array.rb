@@ -1,17 +1,17 @@
 class FlattenArray
-  def initialize
-    @results = []
-  end
-  
-  def self.flatten(nums)
-    nums.each do |n|
-      if n.class != Array
-        @results << n
+  def self.flatten(array)
+    flat = []
+    
+    array.each do |el|
+       next if el.nil?
+
+      if el.class != Array
+        flat << el
       else
-        flatty(n)
+        flat.concat(self.flatten(el))
       end
     end
-debug
-    @results
+    
+    flat
   end
 end
